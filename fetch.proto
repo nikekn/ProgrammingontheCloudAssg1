@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package fetch;
+
+
+service fetch{
+  
+	rpc Sender (stream Request) returns (stream Response);
+}
+
+message Request {
+  string req_id = 1;
+  string benchmark_type = 2;
+  string workload_metric = 3;
+  int32 batch_unit = 4;
+  int32 batch_size = 5;
+  int32 batch_id = 6;
+}
+
+message Response{
+  string rfw_id = 1;
+  string last_batch_id = 2;
+  repeated int32 request_data = 3;
+  float average = 4;
+  float maximum = 5;
+  float minimum = 6;
+  float stdeviation = 7;
+  float percentile10 = 8;
+  float percentile50 = 9;
+  float percentile95 = 10;
+  float percentile99 = 11;
+}
+
